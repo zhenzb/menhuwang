@@ -1,0 +1,68 @@
+{
+  "_args": [
+    [
+      "gulp-scp2@0.2.0",
+      "E:\\mijia\\manager"
+    ]
+  ],
+  "_from": "gulp-scp2@0.2.0",
+  "_id": "gulp-scp2@0.2.0",
+  "_inBundle": false,
+  "_integrity": "sha1-NhXJtZt8oUK/qEDFCqqZdayOeBY=",
+  "_location": "/gulp-scp2",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "gulp-scp2@0.2.0",
+    "name": "gulp-scp2",
+    "escapedName": "gulp-scp2",
+    "rawSpec": "0.2.0",
+    "saveSpec": null,
+    "fetchSpec": "0.2.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/gulp-scp2/-/gulp-scp2-0.2.0.tgz",
+  "_spec": "0.2.0",
+  "_where": "E:\\mijia\\manager",
+  "author": {
+    "name": "popomore",
+    "email": "sakura9515@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/popomore/gulp-scp2/issues"
+  },
+  "dependencies": {
+    "debug": "~2.2.0",
+    "scp2": "~0.2.2",
+    "through2": "~2.0.0"
+  },
+  "description": "Copy file to remote server, using scp2 that is a pure javascript implement.",
+  "devDependencies": {
+    "coveralls": "~2.10.0",
+    "gulp": "~3.9.0",
+    "istanbul": "~0.2.7",
+    "mocha": "~1.18.2",
+    "should": "~3.3.1"
+  },
+  "homepage": "https://github.com/popomore/gulp-scp2",
+  "keywords": [
+    "gulp",
+    "gulpplugin",
+    "scp",
+    "deploy"
+  ],
+  "license": "MIT",
+  "main": "index",
+  "name": "gulp-scp2",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/popomore/gulp-scp2.git"
+  },
+  "scripts": {
+    "test": "mocha -R spec -t 20000"
+  },
+  "version": "0.2.0"
+}

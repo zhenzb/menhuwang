@@ -1,0 +1,96 @@
+package com.qingyun.service.impl;
+
+import com.handongkeji.util.EntyPage;
+import com.handongkeji.util.StringUtil;
+import com.handongkeji.util.manager.ResultVOUtils;
+import com.qingyun.mybatis.dao.MbProductMapper;
+import com.qingyun.mybatis.model.MbProduct;
+import com.qingyun.service.MbProductService;
+import com.qingyun.vo.result.ResultEnum;
+import com.qingyun.vo.result.ResultVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @Classname MbProductServiceImpl
+ * @Date 2019/5/29 17:31
+ * @Created Mr.Chen
+ * ____           _
+ * / ___| __ ___   _(_)_ __
+ * | |  _ / _` \ \ / / | '_ \
+ * | |_| | (_| |\ V /| | | | |
+ * \____|\__,_| \_/ |_|_| |_|
+ */
+@Service
+@Transactional
+public class MbProductServiceImpl implements MbProductService {
+    @Autowired
+    MbProductMapper mbProductMapper;
+
+    @Override
+    public List<MbProduct> getProductList(String text, EntyPage page) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("text",text);
+        map.put("page",page);
+        return mbProductMapper.getProductListByHDPage(map);
+    }
+
+    /**
+     *
+     * @Description 添加或修改产品信息
+     * @author Mr.Chen
+     * @param
+     * @param mbProduct
+     * @date 2019/5/29 17:07
+     * @return com.qingyun.vo.result.ResultVo
+     */
+    @Override
+    public ResultVo advantageAddOrEdit(MbProduct mbProduct) {
+        try {
+            if(mbProduct.getProductid()!=null){
+                mbProductMapper.updateByPrimaryKeySelective(mbProduct);
+            }else {
+                mbProduct.setCreationtime(new Date());
+                mbProductMapper.insertSelective(mbProduct);
+            }
+            return ResultVOUtils.success();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+    @Override
+    public ResultVo deleteOrSort(String ids, String sort) {
+        try {
+            String [] array=ids.split(",");
+            MbProduct mbProduct=null;
+            if(StringUtil.isNullOrEmpty(sort)){
+                for (String id:array) {
+                    mbProduct=new MbProduct();
+                    mbProduct.setProductid(Long.parseLong(id));
+                    mbProduct.setIsdel((short) 1);
+                    mbProductMapper.updateByPrimaryKeySelective(mbProduct);
+                }
+            }else{
+                for (String id:array) {
+                    mbProduct=new MbProduct();
+                    mbProduct.setProductid(Long.parseLong(id));
+                    mbProduct.setProductsort(Integer.parseInt(sort));
+                    mbProductMapper.updateByPrimaryKeySelective(mbProduct);
+                }
+            }
+            return  ResultVOUtils.success();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+}

@@ -1,0 +1,75 @@
+{
+  "_args": [
+    [
+      "scp2@0.2.2",
+      "E:\\mijia\\manager"
+    ]
+  ],
+  "_from": "scp2@0.2.2",
+  "_id": "scp2@0.2.2",
+  "_inBundle": false,
+  "_integrity": "sha1-A6caLOV6LfWtYF32dYxgXzifv1c=",
+  "_location": "/scp2",
+  "_phantomChildren": {
+    "inherits": "2.0.3",
+    "natives": "1.1.6",
+    "once": "1.4.0",
+    "sigmund": "1.0.1"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "scp2@0.2.2",
+    "name": "scp2",
+    "escapedName": "scp2",
+    "rawSpec": "0.2.2",
+    "saveSpec": null,
+    "fetchSpec": "0.2.2"
+  },
+  "_requiredBy": [
+    "/gulp-scp2"
+  ],
+  "_resolved": "https://registry.npmjs.org/scp2/-/scp2-0.2.2.tgz",
+  "_spec": "0.2.2",
+  "_where": "E:\\mijia\\manager",
+  "author": {
+    "name": "Hsiaoming Yang",
+    "email": "lepture@me.com"
+  },
+  "bin": {
+    "scp2": "bin/scp2"
+  },
+  "bugs": {
+    "url": "https://github.com/lepture/node-scp2/issues"
+  },
+  "dependencies": {
+    "async": "~0.9.0",
+    "glob": "~4.0.6",
+    "lodash": "~2.4.1",
+    "ssh2": "~0.3.6"
+  },
+  "description": "A pure javascript scp program based on ssh2.",
+  "devDependencies": {
+    "expect.js": "*",
+    "jscoverage": "^0.5.9",
+    "jshint": "*",
+    "mocha": "*"
+  },
+  "homepage": "https://github.com/lepture/node-scp2",
+  "keywords": [
+    "ssh",
+    "scp",
+    "copy",
+    "remote",
+    "ssh2"
+  ],
+  "name": "scp2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lepture/node-scp2.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "0.2.2"
+}

@@ -1,0 +1,18 @@
+#fiel_path
+#文件存储的域名
+svr.url=http://47.105.204.10
+#文件存储的地址
+file.panfuurl =/qingyun/qingyunupload/
+#file.panfuurl = D:/qingyun/qingyunupload/
+#区分不同的项目
+upload.basepath=qingyun
+#区分项目中不同的文件类型
+file.comon.foldername = common
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+{
+  "_args": [
+    [
+      "@vue/eslint-config-prettier@3.0.0-rc.3",
+      "E:\\mijia\\manager"
+    ]
+  ],
+  "_development": true,
+  "_from": "@vue/eslint-config-prettier@3.0.0-rc.3",
+  "_id": "@vue/eslint-config-prettier@3.0.0-rc.3",
+  "_inBundle": false,
+  "_integrity": "sha1-/6rCAwhvB0A4v/ykdjSGHD5iq1A=",
+  "_location": "/@vue/eslint-config-prettier",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@vue/eslint-config-prettier@3.0.0-rc.3",
+    "name": "@vue/eslint-config-prettier",
+    "escapedName": "@vue%2feslint-config-prettier",
+    "scope": "@vue",
+    "rawSpec": "3.0.0-rc.3",
+    "saveSpec": null,
+    "fetchSpec": "3.0.0-rc.3"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@vue/eslint-config-prettier/-/eslint-config-prettier-3.0.0-rc.3.tgz",
+  "_spec": "3.0.0-rc.3",
+  "_where": "E:\\mijia\\manager",
+  "author": {
+    "name": "Evan You"
+  },
+  "bugs": {
+    "url": "https://github.com/vuejs/vue-cli/issues"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.12.1"
+  },
+  "description": "eslint-config-prettier for vue-cli",
+  "homepage": "https://github.com/vuejs/vue-cli/packages/@vue/eslint-config-prettier#readme",
+  "keywords": [
+    "vue",
+    "cli"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "@vue/eslint-config-prettier",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuejs/vue-cli.git"
+  },
+  "version": "3.0.0-rc.3"
+}

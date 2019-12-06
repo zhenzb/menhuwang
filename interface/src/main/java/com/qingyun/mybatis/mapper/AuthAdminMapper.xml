@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.qingyun.mybatis.dao.AuthAdminMapper">
+
+    <select id="listAdminHDPage" parameterType="java.util.Map" resultType="com.qingyun.mybatis.model.AuthAdmin">
+        SELECT id,username,tel,email,status,last_login_ip,last_login_time,create_time
+        FROM auth_admin
+        WHERE 1=1
+            <if test="authAdminQueryForm.ids != null and authAdminQueryForm.ids.size > 0">
+                AND id IN
+                <foreach collection="authAdminQueryForm.ids" item="id" index="index" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+            <if test="authAdminQueryForm.status != null">
+                AND status = #{authAdminQueryForm.status}
+            </if>
+            <if test="authAdminQueryForm.username != null and '' != username">
+                AND username LIKE CONCAT(#{authAdminQueryForm.username},'%')
+            </if>
+        ORDER BY id
+        DESC
+    </select>
+
+    <select id="findByUserName" parameterType="hashmap" resultType="com.qingyun.mybatis.model.AuthAdmin">
+        SELECT *
+        FROM auth_admin
+        <where>
+            username = #{username}
+        </where>
+        LIMIT 1
+    </select>
+
+    <select id="findById" parameterType="hashmap" resultType="com.qingyun.mybatis.model.AuthAdmin">
+        SELECT *
+        FROM auth_admin
+        <where>
+            id = #{id}
+        </where>
+        LIMIT 1
+    </select>
+
+    <select id="findPwdById" parameterType="hashmap" resultType="com.qingyun.mybatis.model.AuthAdmin">
+        SELECT
+          id,
+          password
+        FROM auth_admin
+        <where>
+            id = #{id}
+        </where>
+        LIMIT 1
+    </select>
+
+    <insert id="insertAuthAdmin" keyProperty="id" parameterType="com.qingyun.mybatis.model.AuthAdmin">
+        INSERT INTO auth_admin(
+        <if test="username != null">
+            username,
+        </if>
+        <if test="password != null">
+            password,
+        </if>
+        <if test="tel != null">
+            tel,
+        </if>
+        <if test="email != null">
+            email,
+        </if>
+        <if test="sex != null">
+            sex,
+        </if>
+        <if test="lastLoginIp != null">
+            last_login_ip,
+        </if>
+        <if test="lastLoginTime != null">
+            last_login_time,
+        </if>
+        create_time,
+        status)
+        values
+        (#{username},
+        <if test="password != null">
+            #{password},
+        </if>
+        <if test="tel != null">
+            #{tel},
+        </if>
+        <if test="email != null">
+            #{email},
+        </if>
+        <if test="sex != null">
+            #{sex},
+        </if>
+        <if test="lastLoginIp != null">
+            #{lastLoginIp},
+        </if>
+        <if test="lastLoginTime != null">
+            #{lastLoginTime},
+        </if>
+        #{createTime},
+        #{status,jdbcType=INTEGER})
+    </insert>
+
+    <update id="updateAuthAdmin" parameterType="com.qingyun.mybatis.model.AuthAdmin">
+        UPDATE auth_admin
+        <set>
+            <if test="username != null">username=#{username},</if>
+            <if test="(password != null and password.length()&gt;0)">password=#{password},</if>
+            <if test="lastLoginIp != null">last_login_ip=#{lastLoginIp},</if>
+            <if test="lastLoginTime != null">last_login_time=#{lastLoginTime}</if>
+            <if test="status != null">status=#{status}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from auth_admin where id = #{id}
+    </delete>
+
+    <select id="selectBDIsByInviteCode" parameterType="string" resultType="com.qingyun.mybatis.model.AuthAdmin">
+        SELECT * FROM auth_admin WHERE invitationCode=#{doctorSuperInviteCode}
+    </select>
+
+</mapper>

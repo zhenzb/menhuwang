@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+		<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+				"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
+	<classPathEntry location="D:/app/mysql/mysql-connector-java/5.1.6/mysql-connector-java-5.1.6.jar"/>
+	<context id="qingyun" targetRuntime="MyBatis3">
+
+		<commentGenerator>
+			<property name="suppressDate" value="true"/>
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+						connectionURL="jdbc:mysql://handongkeji.com:3306/qingyun?rewriteBatchedStatements=true"
+						userId="root" password="Admin2015"/>
+
+		<javaModelGenerator targetPackage="com.qingyun.mybatis.model" targetProject="src/main/java">
+			<!--	<property name="enableSubPackages" value="true"/>
+                <property name="trimStrings" value="true"/>-->
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.qingyun.mybatis.mapper" targetProject="src/main/java">
+			<!--<property name="enableSubPackages" value="true"/>-->
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="com.qingyun.mybatis.dao" targetProject="src/main/java" type="XMLMAPPER">
+			<!--	<property name="enableSubPackages" value="true"/>-->
+		</javaClientGenerator>
+
+
+		<!--<table tableName="mb_product"></table>-->
+		<!--<table tableName="mb_background_pic"></table>-->
+		<!--<table tableName="mb_cooperativepartner"></table>-->
+		<!--<table tableName="mb_ip"></table>-->
+		<!--<table tableName="mb_shoppingmall"></table>-->
+		<!--<table tableName="mb_product_introduction"></table>-->
+		<!--<table tableName="sys_customer"></table>-->
+		<table tableName="mb_order"></table>
+		<!--<table tableName="sys_opinionback"></table>-->
+		<!--<table tableName="sys_problem"></table>-->
+		<!--<table tableName="sys_text"></table>-->
+
+	</context>
+</generatorConfiguration>

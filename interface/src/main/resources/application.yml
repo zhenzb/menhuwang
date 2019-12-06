@@ -1,0 +1,88 @@
+#server:
+#  tomcat:
+#    uri-encoding: UTF-8
+spring:
+  # 静态资源路径配置
+  resources:
+    static-locations: classpath:/META-INF/resources/,class path:/resources/,classpath:/cert/,classpath:/public/
+  profiles:
+    active: dev
+  # 配置返回时间戳
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+  # 应用名称
+  application:
+    name: qingyun
+  http:
+    # 编码设置
+    encoding:
+      force: true
+      charset: UTF-8
+      enable: true
+#   # 上传文件配置
+#   multipart:
+#     enabled: true
+#     file-size-threshold: 5MB
+#     max-request-size: 20MB
+#   # spring mvc 视图解析器
+#    mvc:
+#      view:
+#        prefix: /WEB-INF/
+#        suffix: .jsp
+  # 开启aop
+  aop: true
+
+  #数据源配置
+  datasource:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      #用来设置一个connection在连接池中的存活时间，默认是1800000，即30分钟。如果设置为0，表示存活时间无限大。如果不等于0且小于30秒则会被重置回30分钟。
+      hikari:
+        max-lifetime: 0
+########################## Druid连接池的配置信息  #################
+spring.druid.initialSize: 5                                 #初始化连接大小
+spring.druid.minIdle: 5                                     #最小连接池数量
+spring.druid.maxActive: 800                                 #最大连接池数量
+spring.druid.maxWait: 60000                                 #获取连接时最大等待时间，单位毫秒
+spring.druid.timeBetweenEvictionRunsMillis: 60000           #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+spring.druid.minEvictableIdleTimeMillis: 300000             #配置一个连接在池中最小生存的时间，单位是毫秒
+spring.druid.validationQuery: SELECT 1 FROM DUAL            #测试连接
+spring.druid.testWhileIdle: true                            #申请连接的时候检测，建议配置为true，不影响性能，并且保证安全性
+spring.druid.testOnBorrow: true                             #指明是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个
+spring.druid.testOnReturn: false                            #归还连接时执行检测，建议关闭，影响性能
+spring.druid.poolPreparedStatements: false                  #是否开启PSCache，PSCache对支持游标的数据库性能提升巨大，oracle建议开启，mysql下建议关闭
+spring.druid.maxPoolPreparedStatementPerConnectionSize: 20  #开启poolPreparedStatements后生效
+spring.druid.filters: stat,wall,log4j                       #配置扩展插件，常用的插件有=>stat:监控统计  log4j:日志  wall:防御sql注入
+spring.druid.connectionProperties: 'druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000'  #通过connectProperties属性来打开mergeSql功能;慢SQL记录
+
+# mybatis mapper扫描设置
+mybatis:
+  mapper-locations: classpath:com/qingyun/mybatis/mapper/*.xml
+  # mybatis配置
+  configuration:
+    use-generated-keys: true
+    use-column-label: true
+    map-underscore-to-camel-case: true
+
+# 七牛云配置
+qiniu:
+  accessKey: 40kGBNfTe081LseTsnnOKfCvD1isIQrwrMtLoNVa
+  secretKey: 8_t0Zb6PZtMlE-jYehB1-GJ3yF_M5IaTwIO2uDkh
+  bucket: qihuang
+  bucketUrl: http://qiniu.qihuangdoctor.com/
+
+# 公众号配置
+wxPublic:
+  appid: wxf2520fe96a1e5f1c
+  secret: bfe4e6551684f559a33893e57733385e
+
+# 云信配置
+nim:
+  appKey: 76771e70c434deb11e12ca5e5bf59689
+  appSecret: cbd812cbd7d0
+  accid: admin
+
+  #上传图片虚拟路径
+file.staticAccessPath: /handongUpload/**
+file.uploadFolder: D:/handongUpload/
+#file.uploadFolder: /usr/local/server/farun/upload/

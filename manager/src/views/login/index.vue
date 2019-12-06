@@ -1,0 +1,220 @@
+<template>
+  <div class="login-container">
+    <el-form
+      class="card-box login-form"
+      autocomplete="on"
+      :model="ruleForm"
+      :rules="rules"
+      ref="ruleForm"
+      label-position="left"
+    >
+      <h3 class="title">撼动科技后台管理系统</h3>
+      <el-form-item prop="username" class="item">
+        <el-input
+          size="large"
+          placeholder="请输入账号"
+          name="username"
+          autocomplete="on"
+          v-model="ruleForm.username"
+        >
+          <i slot="prefix" class="el-input__icon" style="padding-left:5px;">
+            <icon-svg icon-class="yonghu"/>
+          </i>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="pwd" class="item">
+        <!--<span class="svg-container">-->
+        <!--<icon-svg icon-class="pwd"/>-->
+        <!--</span>-->
+        <el-input
+          placeholder="请输入密码"
+          name="pwd"
+          :type="isShowPwd ? 'text' : 'password'"
+          @keyup.enter.native="handleLogin"
+          v-model="ruleForm.pwd"
+          autocomplete="on"
+        >
+          <i slot="prefix" class="el-input__icon" style="padding-left:5px;">
+            <icon-svg icon-class="suo"/>
+          </i>
+          <i
+            slot="suffix"
+            class="el-input__icon"
+            style="cursor: pointer;"
+            @click="isShowPwd = !isShowPwd"
+          >
+            <icon-svg :icon-class="isShowPwd?'yanjing-kai':'yanjing-bi'"/>
+          </i>
+        </el-input>
+      </el-form-item>
+      <div>
+        <el-button
+          type="primary"
+          style="width:100%;margin-bottom:30px;"
+          :loading="loading"
+          @click.native="handleLogin()"
+        >登录</el-button>
+      </div>
+    </el-form>
+  </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            ruleForm: {
+                username: "",
+                pwd: "",
+                checked: true
+            },
+            rules: {
+                username: [
+                    { required: true, message: "请输入账号", trigger: "blur" }
+                ],
+                pwd: [
+                    { required: true, message: "请输入密码", trigger: "blur" }
+                ]
+            },
+            isShowPwd: false, // 是否显示密码
+            loading: false, // 登录loading
+            redirect: null // 回调地址
+        };
+    },
+    methods: {
+        handleLogin() {
+            this.$refs["ruleForm"].validate(valid => {
+                if (valid) {
+                    this.loading = true;
+                    this.$store
+                        .dispatch("loginName", this.ruleForm)
+                        .then(response => {
+                            if (response.code) {
+                                this.$message.error(response.message);
+                                this.loading = false;
+                                return;
+                            }
+                            let path = "/";
+                            if (this.redirect) {
+                                path = this.redirect;
+                            }
+                            //跳转后存在浏览器返回上一页403的问题
+                            // this.$router.push({
+                            //     path: path,
+                            // });
+                            //解决方案
+                            window.location.replace(path);
+                        })
+                        .catch(() => {
+                            this.loading = false;
+                        });
+                } else {
+                    return false;
+                }
+            });
+        }
+    },
+    created() {
+        // 将参数拷贝进查询对象
+        let query = this.$route.query;
+        if (query.redirect) {
+            // URL Encode
+            this.redirect = decodeURIComponent(query.redirect);
+        }
+    }
+};
+</script>
+<style type="text/scss" lang="scss" scoped>
+.login-container .el-form-item {
+    width: 100%;
+}
+</style>
+
+
+<style type="text/scss" lang="scss">
+@import "../../styles/mixin";
+
+$bg: #2d3a4b;
+$dark_gray: #889aa4;
+$light_gray: #eee;
+.login-container {
+    @include relative;
+    height: 100%;
+    background-color: $bg;
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px #293444 inset !important;
+        -webkit-text-fill-color: #fff !important;
+    }
+    .item {
+        .el-form-item__content {
+            display: flex;
+            flex-flow: row;
+            height: 100%;
+        }
+        input {
+            padding-left: 35px;
+        }
+    }
+    input {
+        background: transparent;
+        border: 0;
+        -webkit-appearance: none;
+        border-radius: 0;
+        padding: 0.1rem 0.0666rem 0.16rem 0.2rem;
+        color: $light_gray;
+        height: 100%;
+    }
+    .el-input {
+        display: inline-block;
+        font-size: 15px;
+    }
+    .tips {
+        font-size: 14px;
+        color: #fff;
+        margin-bottom: 0.13333rem;
+    }
+    .svg-container {
+        padding: 0.08rem 0.0666rem 0.08rem 0.2rem;
+        color: $dark_gray;
+        vertical-align: middle;
+        display: inline-block;
+        &_login {
+            font-size: 20px;
+        }
+    }
+    .title {
+        font-size: 26px;
+        color: $light_gray;
+        margin: 0 auto 2rem auto;
+        text-align: center;
+        font-weight: bold;
+        line-height: 40px;
+    }
+    .login-form {
+        @include fxied-center;
+        top: 40%;
+        width: 27em;
+        padding: 0.4666rem 0.4666rem 0.2rem 0.4666rem;
+    }
+    .el-form-item {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        color: #454545;
+        height: 3rem;
+    }
+    .show-pwd {
+        position: absolute;
+        right: 0.1333rem;
+        top: 0.09333rem;
+        font-size: 16px;
+        color: $dark_gray;
+        cursor: pointer;
+    }
+    .thirdparty-button {
+        /*position: absolute;*/
+        /*right: .4666rem;*/
+        /*bottom: .37333rem;*/
+    }
+}
+</style>

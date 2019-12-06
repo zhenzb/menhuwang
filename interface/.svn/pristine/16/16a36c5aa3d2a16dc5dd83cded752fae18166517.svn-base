@@ -1,0 +1,108 @@
+package com.qingyun.controller.manager;
+
+import com.handongkeji.config.auth.AuthRuleAnnotation;
+import com.handongkeji.util.EntyPage;
+import com.handongkeji.util.manager.ResultVOUtils;
+import com.qingyun.mybatis.model.MbBackgroundPic;
+import com.qingyun.mybatis.model.MbProduct;
+import com.qingyun.service.MbBackgroundPicService;
+import com.qingyun.service.MbProductIntroductionService;
+import com.qingyun.service.MbProductService;
+import com.qingyun.vo.PageSimpleVO;
+import com.qingyun.vo.manager.MbProductIntroductionVo;
+import com.qingyun.vo.result.ResultEnum;
+import com.qingyun.vo.result.ResultVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * @Classname MbProductController
+ * @Date 2019/5/28 16:56
+ * @Created Mr.Chen
+ * ____           _
+ * / ___| __ ___   _(_)_ __
+ * | |  _ / _` \ \ / / | '_ \
+ * | |_| | (_| |\ V /| | | | |
+ * \____|\__,_| \_/ |_|_| |_|
+ */
+@RestController
+@RequestMapping("product")
+public class MbProductController {
+    @Autowired
+    MbProductIntroductionService mbProductIntroductionService;
+    @Autowired
+    MbProductService mbProductService;
+    @Autowired
+    MbBackgroundPicService mbBackgroundPicService;
+
+    @AuthRuleAnnotation("software/auth/index")
+    @GetMapping("getIntroduction")
+    public ResultVo getProductIntroduction() {
+        try {
+            MbProductIntroductionVo vo=mbProductIntroductionService.getProductIntroduction();
+            return ResultVOUtils.success(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+    @AuthRuleAnnotation("")
+    @PostMapping("introductionEdit")
+    public ResultVo introductionEdit(MbProductIntroductionVo vo) {
+        try {
+            return mbProductIntroductionService.introductionEdit(vo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+
+    @AuthRuleAnnotation("product/auth/index")
+    @GetMapping("getProductList")
+    public ResultVo getProductList(String text,EntyPage page) {
+        try {
+            List<MbProduct> mbProducts= mbProductService.getProductList(text,page);
+            PageSimpleVO<MbProduct> sysProblemPageSimpleVO = new PageSimpleVO<MbProduct>(page.getTotalNumber(), mbProducts);
+            return ResultVOUtils.success(sysProblemPageSimpleVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+    @AuthRuleAnnotation("")
+    @PostMapping("advantageAddOrEdit")
+    public ResultVo advantageAddOrEdit(MbProduct mbProduct) {
+        try {
+            return mbProductService.advantageAddOrEdit(mbProduct);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+
+    @AuthRuleAnnotation("")
+    @PostMapping("deleteOrSort")
+    public ResultVo deleteOrSort(String ids,String sort) {
+        return mbProductService.deleteOrSort(ids,sort);
+    }
+
+    @AuthRuleAnnotation("product/auth/background")
+    @GetMapping("getBackgroudPic")
+    public ResultVo getBackgroudPic(Integer type) {
+        try {
+            MbBackgroundPic backgroundPic =mbBackgroundPicService.getBackgroudPic(type);
+            return ResultVOUtils.success(backgroundPic);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+
+    @AuthRuleAnnotation("")
+    @PostMapping("backgroudPicEdit")
+    public ResultVo backgroudPicEdit(MbBackgroundPic mbBackgroundPic) {
+        return mbBackgroundPicService.backgroudPicEdit(mbBackgroundPic);
+    }
+}
