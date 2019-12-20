@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.servlet.MultipartConfigElement;
+//import javax.servlet.MultipartConfigElement;
 import java.io.File;
 
 // Springboot便捷注解
@@ -28,25 +28,28 @@ import java.io.File;
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(Application.class);
-        //关闭启动Banner
-        app.setBannerMode(Banner.Mode.OFF);
-        app.run(args);
+        SpringApplication.run(Application.class, args);
     }
-    @Bean
-    public MultipartConfigElement multipartConfigElement() {
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-        //单个文件最大
-        factory.setMaxFileSize("300MB"); //KB,MB
-        /// 设置总上传数据总大小
-        factory.setMaxRequestSize("500MB");
-
-//        File tmpFile = new File("D:/mijiatemp/");
-//        if (!tmpFile.exists()) {
-//            tmpFile.mkdirs();
-//        }
-//        factory.setLocation("D:/mijiatemp/");
-        return factory.createMultipartConfig();
-    }
+//    public static void main(String[] args) {
+//        SpringApplication app = new SpringApplication(Application.class);
+//        //关闭启动Banner
+//        app.setBannerMode(Banner.Mode.OFF);
+//        app.run(args);
+//    }
+//    @Bean
+//    public MultipartConfigElement multipartConfigElement() {
+//        MultipartConfigFactory factory = new MultipartConfigFactory();
+//        //单个文件最大
+//        factory.setMaxFileSize("300MB"); //KB,MB
+//        /// 设置总上传数据总大小
+//        factory.setMaxRequestSize("500MB");
+//
+////        File tmpFile = new File("D:/mijiatemp/");
+////        if (!tmpFile.exists()) {
+////            tmpFile.mkdirs();
+////        }
+////        factory.setLocation("D:/mijiatemp/");
+//        return factory.createMultipartConfig();
+//    }
 }
 

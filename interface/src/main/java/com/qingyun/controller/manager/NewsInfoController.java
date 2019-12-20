@@ -14,6 +14,7 @@ import com.qingyun.vo.result.ResultEnum;
 import com.qingyun.vo.result.ResultVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,9 @@ public class NewsInfoController {
     @Autowired
     NewsInfoService newsInfoService;
 
+    @Value("${file.outNewsPath}")
+    private String outNewsPath;
+
     //添加新闻动态
     @PostMapping("addNewsInfo")
     public ResultVo addNewsInfo(NewsInfo newsInfo){
@@ -48,15 +52,15 @@ public class NewsInfoController {
                 newsInfo.setEditTime(date);
                 newsInfoService.addNewsInfo(newsInfo);
                 //生成静态页面
-                HtmlGenerator htmlGenerator = new HtmlGenerator();
-                map.put("customerPic","");
-                map.put("newsTitel",newsInfo.getNewsTitel());
-                map.put("newsContent",newsInfo.getNewsContent());
-                map.put("newsPic",newsInfo.getNewsPic());
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String format = simpleDateFormat.format(date);
-                map.put("editTime",format);
-                htmlGenerator.createHtml(map,"newsInfo.html",newsInfo.getNewsinfoId().toString());
+//                HtmlGenerator htmlGenerator = new HtmlGenerator();
+//                map.put("customerPic","");
+//                map.put("newsTitel",newsInfo.getNewsTitel());
+//                map.put("newsContent",newsInfo.getNewsContent());
+//                map.put("newsPic",newsInfo.getNewsPic());
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                String format = simpleDateFormat.format(date);
+//                map.put("editTime",format);
+//                htmlGenerator.createHtml(map,"newsInfo.html",newsInfo.getNewsinfoId().toString());
             }else{
                 //编辑
                 newsInfo.setEditTime(new Date());
@@ -90,6 +94,21 @@ public class NewsInfoController {
     public ResultVo deleteNewsInfo(String ids){
         try{
             newsInfoService.deleteNewsInfo(ids);
+            return ResultVOUtils.success();
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+
+    /**
+     * 一键静态化新闻
+     * @return
+     */
+    @GetMapping("staticState")
+    public ResultVo staticState(){
+        try {
+            newsInfoService.staticState();
             return ResultVOUtils.success();
         }catch (Exception e){
             e.printStackTrace();

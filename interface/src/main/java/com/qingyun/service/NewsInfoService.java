@@ -25,4 +25,6 @@ public interface NewsInfoService {
     List<NewsInfo> getPrepageNewsInfo(String newsInfoId);
     List<NewsInfo> getNextpageNewsInfo(String newsInfoId);
 
+    void staticState();
+
 }

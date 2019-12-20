@@ -47,4 +47,10 @@ public class FriendshipLinkServiceImpl implements FriendshipLinkService {
     public List<SysFrinedshiplink> getFriendshipLinkHDPage(Map<String, Object> map) {
         return sysFrinedshiplinkMapper.getFriendshipLinkHDPage(map);
     }
+
+    @Override
+    public List<SysFrinedshiplink> getFriendshipLinkList() {
+        SysFrinedshiplinkExample sysFrinedshiplinkExample = new SysFrinedshiplinkExample();
+        return sysFrinedshiplinkMapper.selectByExample(sysFrinedshiplinkExample);
+    }
 }

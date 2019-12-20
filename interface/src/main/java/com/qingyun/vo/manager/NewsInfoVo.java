@@ -10,4 +10,6 @@ import lombok.Data;
 @Data
 public class NewsInfoVo extends NewsInfo {
     private String categoryName;
+    private String url;
+    private String editeTimes;
 }

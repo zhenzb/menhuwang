@@ -95,10 +95,17 @@ export function deleteNewsInfo(query) {
     });
 }
 
-//一键静态化网页
+//一键静态化案例网页
 export function staticState() {
     return axios({
         url: "product/staticState",
+        method: "get"
+    });
+}
+//一键静态化新闻网页
+export function staticStateNews() {
+    return axios({
+        url: "newsInfo/staticState",
         method: "get"
     });
 }

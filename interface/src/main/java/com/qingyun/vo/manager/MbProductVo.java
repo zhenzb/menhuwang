@@ -10,4 +10,5 @@ import lombok.Data;
 @Data
 public class MbProductVo extends MbProduct {
     private String categoryName;
+    private String url;
 }

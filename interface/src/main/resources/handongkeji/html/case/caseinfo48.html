@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html class="">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>创力股份网站案例_撼动科技</title>
+<meta name="keywords" content="创力股份案例">
+<meta name="description" content="">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="css/iconfont.css" rel="stylesheet">
+<link href="css/animate.min.css" rel="stylesheet">
+<link href="css/global.css" rel="stylesheet">
+
+
+<style>
+.userImg{
+	position: absolute;
+	right: 72px;
+	top: 0;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #d9d9d9;
+	padding: 5px;
+}
+.userImg img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+[v-cloak]{
+    display: none;
+}
+</style>
+</head>
+<div class="pc_header">
+	<div class="circle"></div>
+	<div class="pc_header_content clear">
+		<a href="index.html" class="header_content_logo fl"><img src="images/logo.png"></a>
+		<div class="header_content_right clear fr">
+			<div class="menu fl clear">
+			    <ul>
+			        <li class="fl "><a href="index.html" class="menu_title">首页</a></li>
+			        <li class="fl "><a href="about.html#" class="menu_title">关于我们</a></li>
+			        <li class="fl ">
+						<a href="javascript:;" class="menu_title service_items">服务项目</a>
+						<div class="DropDown clear">
+			        		<div class="DropDown_content">
+			        			<a href="service.html#" class="fl ">
+				        			<dd class="iconfont">&#xe70b;</dd>
+				        			<dt>高端网站定制</dt>
+								</a>
+				        		<a href="app.html" class="fl ">
+				        			<dd class="iconfont">&#xe6c0;</dd>
+				        			<dt>APP开发服务</dt>
+				        		</a>
+                                <a href="weixin.html#" class="fl ">
+				        			<dd class="iconfont">&#xe629;</dd>
+				        			<dt>微信定制</dt>
+				        		</a>
+			        		</div>
+			        	</div>
+					</li>
+			        <li class="fl "><a href="case.html" class="menu_title">案例展示</a></li>
+			        <li class="fl "><a href="news.html" class="menu_title">新闻动态</a></li>
+			        <li class="fl "><a href="contact.html" class="menu_title">联系我们</a></li>
+			    </ul>
+			</div>
+			<div class="header_content_phone fr">
+				<span class="iconfont">&#xe6ee;</span>010-53603163
+			</div>
+		</div>
+		<div class="burger fr">
+		    <div class="x"></div>
+		    <div class="y"></div>
+		    <div class="z"></div>
+		</div>
+	</div>
+</div>
+
+<div id="out" v-cloak>
+
+	<!--右侧客服-->
+	<div class="FloatingWindow clear">
+		<a href="http://wpa.qq.com/msgrd?v=3&uin=10001&site=qq&menu=yes" class="FloatingWindow_list fr" target="_blank">
+			<div class="FloatingWindow_list_title">
+				<dd class="iconfont">&#xe675;</dd>
+				<dt>在线咨询</dt>
+			</div>
+		</a>
+		<a  class="FloatingWindow_list fr"  @mouseover="mouseover" @mouseleave="mouseleave">
+			<div class="FloatingWindow_list_title">
+				<dd class="iconfont">&#xe618;</dd>
+				<dt>QQ咨询</dt>
+			</div>
+			<div class="userImg" v-show="userImgState==true">
+				<img src="http://192.168.1.127:8886/handongUpload/handong/common/2019-11-29/EZ1575008451126.jpg" alt="">
+			</div>
+		</a>
+		<a href="javascript:;" class="FloatingWindow_list fr">
+			<div class="FloatingWindow_list_title">
+				<dd class="iconfont">&#xe619;</dd>
+				<dt>服务热线</dt>
+			</div>
+			<div class="FloatingWindow_list_down bounceInRight animated">服务热线：010-53603163</div>
+		</a>
+		<a href="javascript:;" class="FloatingWindow_list fr" id="top">
+			<div class="FloatingWindow_list_title">
+				<dd class="iconfont">&#xe628;</dd>
+				<dt>TOP</dt>
+			</div>
+		</a>
+	</div>
+
+
+
+
+
+	<div class="case_banner CaseDetai_banner" style="background:url(images/casedetails_banenr.jpg) no-repeat 50%/cover;">
+		<div class="case_banner_content">
+			<div class="banner_content_left">
+				<div class="content_left_title">创力股份</div>
+				<div class="content_left_txt"></div>
+				<div class="content_left_button clear">
+									<a href="caseinfo.html#/108.html" class="fl iconfont"><span>&#xe602;</span>Prev Case</a>
+													<a href="caseinfo.html#/142.html"  class="fl iconfont">Next Case<span>&#xe602;</span></a>
+					
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<div class="IndexService CaseDetail" >
+		<div class="IndexService_content all">
+			<div class="IndexService_content_title clear">
+				<dd class="fl">案例展示 / cases show</dd>
+			</div>
+			<div class="CaseDetail_content">
+				<div class="case_body_tag"><p><img src="http://192.168.1.127:8886/handongUpload/handong/common/2019-12-02/BJ1575256452619.jpg" alt="" width="726" height="484" /></p></div>
+				<div class="CaseDetail_content_contact">
+					<a href="http://wpa.qq.com/msgrd?v=3&uin=10001&site=qq&menu=yes" target="_blank">+我也有这样的需求+</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="footer">
+	<div id="mydiv" style="height:367px;"></div>
+	<div class="footer_content">
+		<div class="footer_content_top clear">
+			<div class="content_top_share fl">
+				<div><img src="images/logo.png"></div>
+			</div>
+			<div class="content_top_left fl clear">
+				<div class="top_left_list fl">
+					<dd><a href="about.html#">关于我们</a></dd>
+					<dt>
+						<a href="about.html#">公司简介</a>
+						<a href="about.html##qywh">企业文化</a>
+						<a href="about.html##zzry">资质荣誉</a>
+					</dt>
+				</div>
+				<div class="top_left_list fl">
+					<dd><a href="service.html#">服务项目</a></dd>
+					<dt>
+						<a href="service.html#">高端网站定制</a>
+						<a href="app.html">APP开发</a>
+						<a href="weixin.html#">微信开发</a>
+					</dt>
+				</div>
+				<div class="top_left_list fl">
+					<dd><a href="news.html">新闻动态</a></dd>
+					<dt>
+						<a href="newsinfo.html#hyxw/">行业新闻</a>
+						<a href="newsinfo.html#xuetang/">建站学堂</a>
+						<a href="newsinfo.html#wenti/">常见问题</a>
+					</dt>
+				</div>
+				<div class="top_left_list fl">
+					<dd><a href="contact.html">联系我们</a></dd>
+					<dt>
+						<a href="contact.html">联系我们</a>
+						<a href="contact.html">人才招聘</a>
+					</dt>
+				</div>
+			</div>
+			<div class="content_top_right fr">
+				<div class="top_right_title">联系方式</div>
+				<div class="top_right_content">
+					<div class="right_content_list clear">
+						<dd class="fl iconfont">&#xe62c;</dd>
+						<dt class="fl">电话：010-53603163</dt>
+					</div>
+					<div class="right_content_list clear">
+						<dd class="fl iconfont">&#xe663;</dd>
+						<dt class="fl">QQ：3025294215</dt>
+					</div>
+					<div class="right_content_list clear">
+						<dd class="fl iconfont">&#xe624;</dd>
+						<dt class="fl">邮箱：wangqing@handongkeji.com</dt>
+					</div>
+					<div class="right_content_list clear">
+						<dd class="fl iconfont">&#xe604;</dd>
+						<dt class="fl">地址：北京市朝阳区大望路SOHO现代城C座12层1201室</dt>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="footer_content_copyright clear">Copyright © 2019 HANDONGKEJI.COM 北京撼动科技有限公司 版权所有   <a href="http://www.miitbeian.gov.cn/"  rel="nofollow" target="_blank">备案号：京ICP备15031207号-1</a></div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script src="js/canvas.js"></script>
+<script src="js/global.js"></script>
+<script src="js/iconfont.js"></script>
+<script src="js/axios.js"></script>
+<script src="js/api.js"></script>
+<script src="js/vue.js"></script>
+<script>
+vm=new Vue({
+	el:'#out',
+	data:{
+		caseDetailData:{},
+		userData:{},
+		userImgState:false
+	},
+	created(){
+		this.getQueryVariable();
+		this.getCustomerData();
+	},
+	methods:{
+		 getQueryVariable(){
+			var query = location.search.substring(1);
+			var values= query.split("&"); 
+			for(var i = 0; i < values.length; i++) {
+				var pos = values[i].indexOf('='); 
+				if (pos == -1) continue; 
+				var paramname = values[i].substring(0,pos);
+				var value = values[i].substring(pos+1); 
+				//alert(paramname +","+value ); 
+				this.getCaseDetail(value);
+			}
+		},
+		//获取案例详情
+		getCaseDetail(caseId){
+			var params={
+				caseId:caseId
+			}
+			let that=this;
+			ajax("/index/getCaseDetail",params).then(function(res){
+				that.caseDetailData=res.data.productcontext;
+				console.log('案例详情',res)
+      		})
+		},
+		//获取用户信息
+		getCustomerData(){
+			let that=this;
+			ajax("/index/getCustomer","",{type:'GET'}).then(function(res){
+			    if(res.code==0){
+					that.userData=res.data;
+				}
+				console.log('客服',res)
+      		})
+		},
+		//显示二维码
+		mouseover(){
+			this.userImgState=true;
+		},
+		//隐藏二维码
+		mouseleave(){
+			this.userImgState=false;
+		}
+
+	}
+})
+</script>
+</body>
+</html>

@@ -14,10 +14,19 @@ import java.util.Map;
  */
 public class HtmlGenerator {
 
-    public void createHtml(Map<String,Object> mapContent,String pageTemplate,String pageName) throws Exception{
+    /**
+     *
+     * @param mapContent
+     * @param pageTemplate
+     * @param inputTemplatePath
+     * @param outPath
+     * @param pageName
+     * @throws Exception
+     */
+    public void createHtml(Map<String,Object> mapContent,String pageTemplate,String inputTemplatePath,String outPath,String pageName) throws Exception{
 //①创建配置对象
-        Configuration cfg = new Configuration();//注意:这里需要传递一个版本
-        File f = new File("D:/handongkeji/html/template");
+        Configuration cfg = new Configuration();//注意:这里需要传递一个版本 D:/handongkeji/html/template
+        File f = new File(inputTemplatePath);
 //②读取模板文件夹
         cfg.setDirectoryForTemplateLoading(f);//设置要加载的模板文件的路径
 //③设置模板的编码格式
@@ -26,8 +35,8 @@ public class HtmlGenerator {
         Template template = cfg.getTemplate(pageTemplate);//hello.ftl是模板名称
 //⑤创建数据模型(这里使用map类型) --[数据模型可以是List、Map对象 注意:Map类型的key必须是String类型]
 
-//⑥将模板和数据模型合并 --> 输出模板,生成文件
-        PrintWriter pw = new PrintWriter(new File("D:/handongkeji/html", pageName+".html"));
+//⑥将模板和数据模型合并 --> 输出模板,生成文件 D:/handongkeji/html
+        PrintWriter pw = new PrintWriter(new File(outPath, pageName+".html"));
         template.process(mapContent, pw);//合并 map:数据模型 pw:输出流对象
         pw.close();//关闭流
     }

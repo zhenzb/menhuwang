@@ -5,11 +5,9 @@ import com.handongkeji.util.StringUtil;
 import com.handongkeji.util.manager.ResultVOUtils;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.qingyun.mybatis.dao.CaseCategoryMapper;
+import com.qingyun.mybatis.dao.MbCustomerMapper;
 import com.qingyun.mybatis.dao.MbProductMapper;
-import com.qingyun.mybatis.model.CaseCategory;
-import com.qingyun.mybatis.model.CaseCategoryExample;
-import com.qingyun.mybatis.model.MbProduct;
-import com.qingyun.mybatis.model.MbProductExample;
+import com.qingyun.mybatis.model.*;
 import com.qingyun.service.MbProductService;
 import com.qingyun.util.HtmlGenerator;
 import com.qingyun.vo.PageSimpleVO;
@@ -18,10 +16,12 @@ import com.qingyun.vo.manager.MbProductVo;
 import com.qingyun.vo.result.ResultEnum;
 import com.qingyun.vo.result.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -41,6 +41,14 @@ public class MbProductServiceImpl implements MbProductService {
     MbProductMapper mbProductMapper;
     @Autowired
     CaseCategoryMapper caseCategoryMapper;
+    @Resource
+    MbCustomerMapper mbCustomerMapper;
+
+    @Value("${file.inputTemplatePath}")
+    private String inputTemplatePath;
+    @Value("${file.outCasePath}")
+    private String outCasePath;
+
 
     @Override
     public List<MbProductVo> getProductList(String categoryId,String text, EntyPage page) {
@@ -112,7 +120,12 @@ public class MbProductServiceImpl implements MbProductService {
     public List<MbProduct> getPrepageCase(String caseId,String categoryId) {
         MbProductExample mbProductExample = new MbProductExample();
         mbProductExample.setOrderByClause("ProductId ASC");
-        mbProductExample.createCriteria().andProductidGreaterThan(Long.valueOf(caseId)).andCategoryIdEqualTo(Long.valueOf(categoryId));
+        if(categoryId !=null && categoryId !=""){
+            mbProductExample.createCriteria().andProductidGreaterThan(Long.valueOf(caseId)).andCategoryIdEqualTo(Long.valueOf(categoryId));
+        }else{
+            mbProductExample.createCriteria().andProductidGreaterThan(Long.valueOf(caseId));
+        }
+
         return mbProductMapper.selectByExample(mbProductExample);
 
     }
@@ -121,13 +134,26 @@ public class MbProductServiceImpl implements MbProductService {
     public List<MbProduct> getNextpageCase(String caseId,String categoryId) {
         MbProductExample mbProductExample = new MbProductExample();
         mbProductExample.setOrderByClause("ProductId DESC");
-        mbProductExample.createCriteria().andProductidLessThan(Long.valueOf(caseId)).andCategoryIdEqualTo(Long.valueOf(categoryId));
+        if(categoryId !=null && categoryId !=""){
+            mbProductExample.createCriteria().andProductidLessThan(Long.valueOf(caseId)).andCategoryIdEqualTo(Long.valueOf(categoryId));
+        }else{
+            mbProductExample.createCriteria().andProductidLessThan(Long.valueOf(caseId));
+        }
         return mbProductMapper.selectByExample(mbProductExample);
     }
 
     @Override
     public void staticState() {
         try {
+            EntyPage page = new EntyPage();
+            Map<String,Object> map1 = new HashMap<>();
+            map1.put("customerStatus",1);
+            map1.put("page",page);
+            MbCustomer mbCustomer = null;
+            List<MbCustomer> mbCustomerHDPage =mbCustomerMapper.getMbCustomerHDPage(map1);
+            if(mbCustomerHDPage.size()>0){
+                mbCustomer = mbCustomerHDPage.get(0);
+            }
             HtmlGenerator htmlGenerator = new HtmlGenerator();
             Map<String, Object> map = new HashMap<>();
             Map<String,Object> mapList = new HashMap<>();
@@ -136,32 +162,37 @@ public class MbProductServiceImpl implements MbProductService {
             //生成详情静态页面
             for (MbProduct mbProduct : mbProducts) {
                 map.put("caseDetailData", mbProduct.getProductcontext()==null?"" :mbProduct.getProductcontext());
-                map.put("customerPic", "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575275823829&di=1805f36c0dbd5b3b6134d168b8636437&imgtype=0&src=http%3A%2F%2Fy1.ifengimg.com%2Fcmpp%2F2015%2F01%2F29%2F06%2Feb484823-7409-4f9f-b46f-556a4b10119b_size101_w400_h400.jpg");
-                htmlGenerator.createHtml(map, "caseinfo.html", "caseinfo" + mbProduct.getProductid());
+                map.put("customerPic", mbCustomer.getCustomerPic());
+                htmlGenerator.createHtml(map, "caseinfo.html",inputTemplatePath,outCasePath, "caseinfo" + mbProduct.getProductid());
             }
             //生成分页列表页
             CaseCategoryExample caseCategoryExample = new CaseCategoryExample();
+            caseCategoryExample.createCriteria().andCategoryTypeEqualTo(1);
             List<CaseCategory> caseCategories = caseCategoryMapper.selectByExample(caseCategoryExample);
             int totalPage = 1;
-            EntyPage page = new EntyPage();
             for(int i=1;i<=totalPage;i++){
                 Map<String,Object> productMap = new HashMap<>();
                 page.setCurrentPage(i);
                 page.setPageSize(9);
                 productMap.put("page",page);
                 List<MbProductVo> productListByHDPage = mbProductMapper.getProductListByHDPage(productMap);
+                List<MbProductVo> list = new ArrayList<>();
+                for(MbProductVo mbProductVo:productListByHDPage){
+                    mbProductVo.setUrl("file:///D:/handongkeji/html/case/caseinfo"+mbProductVo.getProductid()+".html");
+                    list.add(mbProductVo);
+                }
                 mapList.put("categoryList",caseCategories);
-                mapList.put("customerPic","");
-                mapList.put("productList",productListByHDPage);
-                System.out.println("www:"+productListByHDPage);
+                mapList.put("customerPic",mbCustomer.getCustomerPic());
+                mapList.put("productList",list);
+                System.out.println("case:"+productListByHDPage);
                 totalPage = page.getTotalPage();
                     PagingResult pagingResult = new PagingResult();
                     pagingResult.setPage(i);
                     pagingResult.setPageSize(page.getPageSize());
                     pagingResult.setTotal(page.getTotalNumber());
                     mapList.put("pagingList",pagingResult);
-                    mapList.put("url","file:///D:/handongkeji/html");
-                    htmlGenerator.createHtml(mapList, "case.html", "case" + i);
+                    mapList.put("url","file:///D:/handongkeji/html/case");
+                    htmlGenerator.createHtml(mapList, "case.html", inputTemplatePath,outCasePath,"case" + i);
             }
         }catch (Exception e){
             e.printStackTrace();

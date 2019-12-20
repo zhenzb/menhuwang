@@ -63,6 +63,8 @@ public class WeBsiteController {
 
     @Autowired
     CustomerService customerService;
+    @Autowired
+    FriendshipLinkService sysFrinedshiplinkService;
     /**
      *对进入此页面的Ip 进行校验
      * @param
@@ -347,6 +349,24 @@ public class WeBsiteController {
     }
 
     /**
+     * 获取首页新闻
+     * @return
+     */
+    @ApiOperation(value="获取首页新闻", notes="获取首页新闻")
+    @ApiImplicitParams({
+    })
+    @GetMapping("getHomeNewsInfo")
+    public ResultVo getHomeNewsInfo(){
+        try {
+            NewsInfo newsInfoDetail = newsInfoService.getNewsInfoDetail("9999");
+            return ResultVOUtils.success(newsInfoDetail);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+
+    /**
      * 获取新闻详情
      * @param newsInfoId
      * @return
@@ -423,6 +443,23 @@ public class WeBsiteController {
                mbCustomer = mbCustomerHDPage.get(0);
             }
             return  ResultVOUtils.success(mbCustomer);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultVOUtils.error(ResultEnum.NOT_NETWORK);
+        }
+    }
+
+    /**
+     * 获取友情链接
+     * @return
+     */
+    @ApiOperation(value = "获取友情链接", notes = "友情链接")
+    @ApiImplicitParams({})
+    @GetMapping("getFriendshipLink")
+    public ResultVo getFriendshipLink(){
+        try {
+            List<SysFrinedshiplink> friendshipLinkList = sysFrinedshiplinkService.getFriendshipLinkList();
+            return ResultVOUtils.success(friendshipLinkList);
         }catch (Exception e){
             e.printStackTrace();
             return ResultVOUtils.error(ResultEnum.NOT_NETWORK);

@@ -409,7 +409,7 @@
     FROM
     news_info as ni
     left join case_category as cc on cc.category_id = ni.category_id
-    where 1=1
+    where newsinfo_id != 9999
 	<if test="newsTitle !=null and newsTitle !=''">
      and ni.news_titel like CONCAT('%',#{newsTitle},'%')
     </if>

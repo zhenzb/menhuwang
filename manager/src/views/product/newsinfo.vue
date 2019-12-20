@@ -15,6 +15,7 @@
                 <el-button type="primary" icon="el-icon-refresh" @click="onRest">刷新</el-button>
                 <el-button type="primary" icon="el-icon-search" @click="onSubmit">查询</el-button>
                 <el-button type="primary" icon="el-icon-edit" @click.native="showDialogAddOrEdit(null,null)">添加</el-button>
+                <el-button type="primary" icon="el-icon-edit" @click.native="staticStateNews(null,null)">一键静态化页面</el-button>
                 <!-- <el-button type="primary" icon="el-icon-sort" @click="sortGroup">变更排序</el-button> -->
             </el-form-item>
         </el-form>
@@ -57,7 +58,7 @@
                 <template slot-scope="scope">
                     <el-button type="primary" size="mini"  @click.native="showDialogDetails(scope.$index, scope.row)" >查看 </el-button>
                     <el-button type="primary" size="mini"  @click.native="showDialogAddOrEdit(scope.$index, scope.row)" >编辑 </el-button>
-                    <el-button type="danger" size="mini" @click.native="handleDel(scope.row.newsinfoId)" >删除 </el-button>
+                    <el-button type="danger" size="mini" :disabled="scope.row.newsinfoId!=9999?false:true" @click.native="handleDel(scope.row.newsinfoId)" >删除 </el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -191,7 +192,8 @@ import {
     getCategory,
     addNewsInfo,
     getNewsInfo,
-    deleteNewsInfo
+    deleteNewsInfo,
+    staticStateNews
 } from "../../api/product/product";
 import Tinymce from "../../components/Tinymce/index";
 import { BASE_URL } from "../../config/app";
@@ -287,6 +289,20 @@ export default {
                 this.$message.error("上传图片大小不能超过 2MB!");
             }
             return (isJPG || isBMP || isGIF || isPNG) && isLt2M;
+        },
+        // 一键静态化页面
+        staticStateNews() {
+            staticStateNews()
+                .then(response => {
+                    if (response.code == 0) {
+                        this.$message.info(response.message);
+                    } else {
+                        this.$message.error(response.message);
+                    }
+                })
+                .catch(() => {
+                    this.$message.error("静态化失败!");
+                });
         },
         /*获取列表事件*/
         getNewsInfo() {

@@ -86,3 +86,8 @@ nim:
 file.staticAccessPath: /handongUpload/**
 file.uploadFolder: D:/handongUpload/
 #file.uploadFolder: /usr/local/server/farun/upload/
+
+#静态化页面
+file.inputTemplatePath: /handongkeji/html/template
+file.outCasePath: /handongkeji/html/case
+file.outNewsPath: /handongkeji/html/news

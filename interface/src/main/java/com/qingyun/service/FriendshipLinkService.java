@@ -18,4 +18,6 @@ public interface FriendshipLinkService {
     void updateFriendshipLink(SysFrinedshiplink sysFrinedshiplink);
 
     List<SysFrinedshiplink> getFriendshipLinkHDPage(Map<String,Object> map);
+
+    List<SysFrinedshiplink> getFriendshipLinkList();
 }

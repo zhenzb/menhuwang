@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="keywords" content="北京撼动科技有限公司" />
+<meta name="description" content="北京撼动科技有限公司" />
+<title>新闻动态_撼动科技</title>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="css/iconfont.css" rel="stylesheet">
+<link href="css/animate.min.css" rel="stylesheet">
+<link href="css/global.css" rel="stylesheet">
+<style>
+.userImg{
+	position: absolute;
+	right: 72px;
+	top: 0;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #d9d9d9;
+	padding: 5px;
+}
+.userImg img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+[v-cloak]{
+    display: none;
+}
+.newsList{
+	cursor:pointer;
+}
+.page{
+	 display:flex;
+	 just-content:space-evenly;
+	 line-height: 30px;
+}
+.inPage{
+	 display:flex;
+	 just-content:flex-start;
+	 padding:0 20px;
+}
+.pageNum{
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: #317EFF;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    margin-left: 20px;
+}
+.pageNum1{
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: #D3D3D3;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    margin-left: 20px;
+}
+</style>
+</head>
+<div class="pc_header">
+	<div class="circle"></div>
+	<div class="pc_header_content clear">
+		<a href="index.html" class="header_content_logo fl"><img src="images/logo.png"></a>
+		<div class="header_content_right clear fr">
+			<div class="menu fl clear">
+			    <ul>
+			        <li class="fl "><a href="index.html" class="menu_title">首页</a></li>
+			        <li class="fl "><a href="about.html#" class="menu_title">关于我们</a></li>
+			        <li class="fl ">
+						<a href="javascript:;" class="menu_title service_items">服务项目</a>
+						<div class="DropDown clear">
+			        		<div class="DropDown_content">
+			        			<a href="service.html#" class="fl ">
+				        			<dd class="iconfont">&#xe70b;</dd>
+				        			<dt>高端网站定制</dt>
+								</a>
+				        		<a href="app.html" class="fl ">
+										<dd class="iconfont">&#xe6c0;</dd>
+										<dt>APP开发服务</dt>
+								</a>
+                                <a href="weixin.html#" class="fl ">
+				        			<dd class="iconfont">&#xe629;</dd>
+				        			<dt>微信定制</dt>
+				        		</a>
+			        		</div>
+			        	</div>
+					</li>
+			        <li class="fl "><a href="case.html" class="menu_title">案例展示</a></li>
+			        <li class="fl on"><a href="news.html" class="menu_title">新闻动态</a></li>
+			        <li class="fl "><a href="contact.html" class="menu_title">联系我们</a></li>
+			    </ul>
+			</div>
+			<div class="header_content_phone fr">
+				<span class="iconfont">&#xe6ee;</span>010-53603163
+			</div>
+		</div>
+		<div class="burger fr">
+		    <div class="x"></div>
+		    <div class="y"></div>
+		    <div class="z"></div>
+		</div>
+	</div>
+</div>
+
+<div id="out" v-cloak>
+
+	<!--右侧客服-->
+	<div class="FloatingWindow clear">
+		<a href="http://wpa.qq.com/msgrd?v=3&uin=10001&site=qq&menu=yes" class="FloatingWindow_list fr" target="_blank">
+			<div class="FloatingWindow_list_title">
+				<dd class="iconfont">&#xe675;</dd>
+				<dt>在线咨询</dt>
+			</div>
+		</a>
+		<a  class="FloatingWindow_list fr"  @mouseover="mouseover" @mouseleave="mouseleave">
+			<div class="FloatingWindow_list_title">
+				<dd class="iconfont">&#xe618;</dd>
+				<dt>QQ咨询</dt>
+			</div>
+			<div class="userImg" v-show="userImgState==true">
+				<img src="http://192.168.1.127:8886/handongUpload/handong/common/2019-11-29/EZ1575008451126.jpg" alt="">
+			</div>
+		</a>
+		<a href="javascript:;" class="FloatingWindow_list fr">
+			<div class="FloatingWindow_list_title">
+				<dd class="iconfont">&#xe619;</dd>
+				<dt>服务热线</dt>
+			</div>
+			<div class="FloatingWindow_list_down bounceInRight animated">服务热线：010-53603163</div>
+		</a>
+		<a href="javascript:;" class="FloatingWindow_list fr" id="top">
+			<div class="FloatingWindow_list_title">
+				<dd class="iconfont">&#xe628;</dd>
+				<dt>TOP</dt>
+			</div>
+		</a>
+	</div>
+
+
+
+
+	<div class="details_banner" style="background:url(images/news_banner.jpg) no-repeat 50%/cover;"></div>
+
+
+	<div class="IndexService IndexNews news">
+		<div class="IndexService_content all wow fadeIn">
+			<div class="IndexService_content_title clear">
+				<dd class="fl">因为专注，所以专业</dd>
+			</div>
+			<div class="news_content clear" >
+				<a href="file:///D:/handongkeji/html/news/newsInfo24.html">
+					<div  class="news_content_list fl clear newsList">
+						<div class="content_list_time fl">
+							<dd>12-03</dd>
+							<dt class="iconfont"><span></span></dt>
+						</div>
+						<div class="content_list_txt fl">
+							<dd><a>静态新闻1</a></dd>
+							<p><p>圣诞节三<img src="http://192.168.1.127:8886/handongUpload/handong/common/2019-12-03/TM1575339200518.jpg" alt="" width="726" height="484" /></p></p>
+						</div>
+						<div class="content_list_img fl"><a ><img src="http://192.168.1.127:8886/handongUpload/handong/common/2019-12-03/UX1575339189790.jpg"  ></a></div>
+						<div class="btn  fl">TAG：</div>
+					</div>
+				</a>
+				<a href="file:///D:/handongkeji/html/news/newsInfo23.html">
+					<div  class="news_content_list fl clear newsList">
+						<div class="content_list_time fl">
+							<dd>12-02</dd>
+							<dt class="iconfont"><span></span></dt>
+						</div>
+						<div class="content_list_txt fl">
+							<dd><a>测试22</a></dd>
+							<p><p>传<img src="http://192.168.1.127:8886/handongUpload/handong/common/2019-12-02/BR1575284668995.jpg" alt="" width="1200" height="800" /></p></p>
+						</div>
+						<div class="content_list_img fl"><a ><img src="http://192.168.1.127:8886/handongUpload/handong/common/2019-12-02/GU1575284663277.jpg"  ></a></div>
+						<div class="btn  fl">TAG：</div>
+					</div>
+				</a>
+			</div>
+			<div class="page vertical">
+
+<div class="page">
+            <a href="file:///D:/handongkeji/html/news/news2.html">上一页</a>
+
+	<div class="inPage">
+			<a class="pageNum1" href="file:///D:/handongkeji/html/news/news1.html" >1</a>
+
+
+					<a class="pageNum1" href="file:///D:/handongkeji/html/news/news2.html" >2</a>
+					<a class="pageNum1" href="file:///D:/handongkeji/html/news/news3.html" style="display: block;
+    width: 30px;
+    height: 30px;
+    background: #317EFF;
+    text-align: center;
+    line-height: 30px;
+    color: #fff;
+    margin-left: 20px;">3</a>
+					<a class="pageNum1" href="file:///D:/handongkeji/html/news/news4.html" >4</a>
+					<a class="pageNum1" href="file:///D:/handongkeji/html/news/news5.html" >5</a>
+					<a class="pageNum1" href="file:///D:/handongkeji/html/news/news6.html" >6</a>
+
+				<span class="text">…</span>
+
+			<a class="pageNum1" href="file:///D:/handongkeji/html/news/news11.html" >11</a>
+	</div>
+        <a href="file:///D:/handongkeji/html/news/news4.html">下一页</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="footer">
+	<div id="mydiv" style="height:367px;"></div>
+	<div class="footer_content">
+		<div class="footer_content_top clear">
+			<div class="content_top_share fl">
+				<div><img src="images/logo.png"></div>
+			</div>
+			<div class="content_top_left fl clear">
+				<div class="top_left_list fl">
+					<dd><a href="about.html#">关于我们</a></dd>
+					<dt>
+						<a href="about.html#">公司简介</a>
+						<a href="about.html##qywh">企业文化</a>
+						<a href="about.html##zzry">资质荣誉</a>
+					</dt>
+				</div>
+				<div class="top_left_list fl">
+					<dd><a href="service.html#">服务项目</a></dd>
+					<dt>
+						<a href="service.html#">高端网站定制</a>
+						<a href="app.html">APP开发</a>
+						<a href="weixin.html#">微信开发</a>
+	
+					</dt>
+				</div>
+				<div class="top_left_list fl">
+					<dd><a href="news.html">新闻动态</a></dd>
+					<dt>
+						<a href="newsinfo.html#hyxw/">行业新闻</a>
+						<a href="newsinfo.html#xuetang/">建站学堂</a>
+						<a href="newsinfo.html#wenti/">常见问题</a>
+					</dt>
+				</div>
+				<div class="top_left_list fl">
+					<dd><a href="contact.html">联系我们</a></dd>
+					<dt>
+						<a href="contact.html">联系我们</a>
+						<a href="contact.html">人才招聘</a>
+					</dt>
+				</div>
+			</div>
+			<div class="content_top_right fr">
+				<div class="top_right_title">联系方式</div>
+				<div class="top_right_content">
+					<div class="right_content_list clear">
+						<dd class="fl iconfont">&#xe62c;</dd>
+						<dt class="fl">电话：010-53603163</dt>
+					</div>
+					<div class="right_content_list clear">
+						<dd class="fl iconfont">&#xe663;</dd>
+						<dt class="fl">QQ：3025294215</dt>
+					</div>
+					<div class="right_content_list clear">
+						<dd class="fl iconfont">&#xe624;</dd>
+						<dt class="fl">邮箱：wangqing@handongkeji.com</dt>
+					</div>
+					<div class="right_content_list clear">
+						<dd class="fl iconfont">&#xe604;</dd>
+						<dt class="fl">地址：北京市朝阳区大望路SOHO现代城C座12层1201室
+							</dt>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="footer_content_copyright clear">Copyright © 2019 HANDONGKEJI.COM 北京撼动科技有限公司 版权所有 <a href="http://www.miitbeian.gov.cn/"  rel="nofollow" target="_blank">备案号：京ICP备15031207号-1</a></div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script src="js/canvas.js"></script>
+<script src="js/global.js"></script>
+<script src="js/iconfont.js"></script>
+<script src="js/axios.js"></script>
+<script src="js/api.js"></script>
+<script src="js/vue.js"></script>
+<script>
+vm=new Vue({
+	el:'#out',
+	data:{
+		newsInfoData:[],  //新闻列表
+		currentPage:1,
+		categoryId:'',
+		userData:{},
+		userImgState:false,
+		preTitle:'',
+		nextTitle:''
+	},
+	filters: {
+      formatDate: function (value) {
+            var date = new Date(value);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var Y = date.getFullYear() + '-';
+            var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            var D = (date.getDate() < 10 ? '0'+date.getDate() : date.getDate()) + '      ';
+            var h = (date.getHours() < 10 ? '0'+date.getHours() : date.getHours()) + ':';
+            var m = (date.getMinutes() < 10 ? '0'+date.getMinutes() : date.getMinutes()) + '';
+            var s = (date.getSeconds() < 10 ? '0'+date.getSeconds() : date.getSeconds());
+            return M+D;
+         }
+      },
+	created(){
+		this.getNewsInfo();
+		this.getCustomerData();
+	},
+	methods:{
+		//获取新闻列表
+		getNewsInfo(){
+			var params={
+				currentPage:this.currentPage,
+				pageSize:9,
+				categoryId:this.categoryId||''
+			}
+			let that=this;
+			ajax("/index/getNewsInfo",params,{type:'GET'}).then(function(res){
+				that.newsInfoData=res.data.list;
+				console.log(res)
+      		})
+		},
+		//跳转新闻详情
+		toNewsInfor(item,index){    
+			let myUrl='newsinfo.html?newsinfoId='+item.newsinfoId;
+			window.open(myUrl,'_blank')
+		},                               
+		//获取用户信息
+		getCustomerData(){
+			let that=this;
+			ajax("/index/getCustomer","",{type:'GET'}).then(function(res){
+			    if(res.code==0){
+					that.userData=res.data;
+				}
+				console.log('客服',res)
+      		})
+		},
+		//显示二维码
+		mouseover(){
+			this.userImgState=true;
+		},
+		//隐藏二维码
+		mouseleave(){
+			this.userImgState=false;
+		}
+	}
+})
+</script>
+</body>
+</html>
